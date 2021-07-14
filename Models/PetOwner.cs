@@ -7,6 +7,7 @@ namespace pet_hotel
 {
     public class PetOwner {
 
+        [Primary]
         public int id {get; set;}
 
         [Required]
@@ -14,5 +15,8 @@ namespace pet_hotel
 
         [Required]
         public string emailAddress {get; set;} 
+
+        // eh?
+        public List<Pet> PetListForOwner {get; set;} // no idea
     }
 }
