@@ -5,18 +5,28 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace pet_hotel
 {
-    public class PetOwner {
+    public class PetOwner
+    {
 
-        [Primary]
-        public int id {get; set;}
 
-        [Required]
-        public string name {get; set;} 
+        public int id { get; set; }
 
         [Required]
-        public string emailAddress {get; set;} 
+        public string name { get; set; }
+
+        [Display(Name = "Email address")]
+        [Required(ErrorMessage = "The email address is required")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        public string emailAddress { get; set; }
 
         // eh?
-        public List<Pet> PetListForOwner {get; set;} // no idea
+        [JsonIgnore]
+        [NotMapped]
+        public List<Pet> PetListForOwner { get; set; } // no idea
+
+        [JsonIgnore]
+        [NotMapped]
+        public int petCount { get; set; }
+        }
     }
-}
+

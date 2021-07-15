@@ -23,18 +23,30 @@ namespace pet_hotel
         Spotted
     }
     public class Pet {
+       
+        [Required]
+        public int id {get; set;}
+       
         [Required]
         public string name {get; set;}
-
+       
         [Required]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public PetBreedType breed {get; set;}
-
+      
         [Required]
         public string color {get; set;}
-
         public DateTime checkedinAt {get;set;}
 
-        [ForeignKey("PetOwners")]
+        [Required]
+        [ForeignKey("PetOwners")] //s?
+        public int petOwnerid {get; set;}
+
         public PetOwner petOwner {get; set;}
+
+        public void checkIn() {
+            checkedinAt = DateTime.Now;
+        }
+
     }
 }
