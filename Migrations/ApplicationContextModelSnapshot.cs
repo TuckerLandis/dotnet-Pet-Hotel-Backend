@@ -29,7 +29,7 @@ namespace dotnet_bakery.Migrations
                     b.Property<int>("breed")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("checkedinAt")
+                    b.Property<DateTime?>("checkedInAt")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("color")
@@ -73,12 +73,17 @@ namespace dotnet_bakery.Migrations
             modelBuilder.Entity("pet_hotel.Pet", b =>
                 {
                     b.HasOne("pet_hotel.PetOwner", "petOwner")
-                        .WithMany()
+                        .WithMany("PetListForOwner")
                         .HasForeignKey("petOwnerid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("petOwner");
+                });
+
+            modelBuilder.Entity("pet_hotel.PetOwner", b =>
+                {
+                    b.Navigation("PetListForOwner");
                 });
 #pragma warning restore 612, 618
         }

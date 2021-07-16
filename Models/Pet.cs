@@ -36,16 +36,21 @@ namespace pet_hotel
       
         [Required]
         public string color {get; set;}
-        public DateTime checkedinAt {get;set;}
+        public DateTime? checkedInAt {get; set;}
 
         [Required]
         [ForeignKey("PetOwners")] //s?
         public int petOwnerid {get; set;}
 
+       
         public PetOwner petOwner {get; set;}
 
-        public void checkIn() {
-            checkedinAt = DateTime.Now;
+        public void checkInPet() {
+            this.checkedInAt = DateTime.Now;
+        }
+
+        public void checkOutPet() {
+            this.checkedInAt = null;
         }
 
     }

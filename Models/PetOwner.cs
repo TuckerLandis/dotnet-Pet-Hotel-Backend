@@ -21,12 +21,25 @@ namespace pet_hotel
 
         // eh?
         [JsonIgnore]
-        [NotMapped]
-        public List<Pet> PetListForOwner { get; set; } // no idea
+        // [NotMapped]
+        public ICollection<Pet> PetListForOwner { get; set; } // no idea
 
-        [JsonIgnore]
+        // [JsonIgnore]
         [NotMapped]
-        public int petCount { get; set; }
+        public int petCount { 
+            get{
+            // return 1;
+            return (PetListForOwner == null ? 0 : PetListForOwner.Count);
+        }
+          set{
+            // return 1;
+           
+            // (PetListForOwner == null ? 0 : PetListForOwner.Count);
+        }
+        
+         }
+
+        
         }
     }
 
